@@ -42,7 +42,7 @@ function parseConfig(configXmlContent) {
   if (!configXmlContent.chcp) {
     return {};
   }
-
+  console.log("chcp content is: " + configXmlContent.chcp);
   return configXmlContent.chcp;
 }
 

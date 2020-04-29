@@ -95,6 +95,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
         loadPluginInternalPreferences();
 
         Log.d("CHCP", "Currently running release version " + pluginInternalPrefs.getCurrentReleaseVersionName());
+        Log.e("CHCP", "Currently running release version " + pluginInternalPrefs.getCurrentReleaseVersionName());
 
         // clean up file system
         cleanupFileSystemFromOldReleases();
@@ -119,6 +120,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
         isPluginReadyForWork = isPluginReadyForWork();
         if (!isPluginReadyForWork) {
             dontReloadOnStart = true;
+            Log.e("Installing www folder.");
             installWwwFolder();
             return;
         }
@@ -322,6 +324,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
         // fetch update when we are initialized
         if (chcpXmlConfig.isAutoDownloadIsAllowed() &&
                 !UpdatesInstaller.isInstalling() && !UpdatesLoader.isExecuting()) {
+            Log.e("Fetching update.");
             fetchUpdate();
         }
     }
