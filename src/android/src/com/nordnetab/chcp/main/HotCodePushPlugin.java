@@ -95,7 +95,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
         loadPluginInternalPreferences();
 
         Log.d("CHCP", "Currently running release version " + pluginInternalPrefs.getCurrentReleaseVersionName());
-        Log.e("CHCP", "Currently running release version " + pluginInternalPrefs.getCurrentReleaseVersionName());
+        Log.d("CHCP", "Running rselease version " + pluginInternalPrefs.getCurrentReleaseVersionName());
 
         // clean up file system
         cleanupFileSystemFromOldReleases();
@@ -120,7 +120,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
         isPluginReadyForWork = isPluginReadyForWork();
         if (!isPluginReadyForWork) {
             dontReloadOnStart = true;
-            Log.e("Installing www folder.");
+            // Log.e("Installing www folder.");
             installWwwFolder();
             return;
         }
@@ -324,7 +324,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
         // fetch update when we are initialized
         if (chcpXmlConfig.isAutoDownloadIsAllowed() &&
                 !UpdatesInstaller.isInstalling() && !UpdatesLoader.isExecuting()) {
-            Log.e("Fetching update.");
+            // Log.e("Fetching update.");
             fetchUpdate();
         }
     }
@@ -803,6 +803,7 @@ public class HotCodePushPlugin extends CordovaPlugin {
     @Subscribe
     public void onEvent(UpdateDownloadErrorEvent event) {
         Log.d("CHCP", "Failed to update");
+        Log.d("CHCP", event.error().getErrorDescription());
 
         final ChcpError error = event.error();
         if (error == ChcpError.LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND || error == ChcpError.LOCAL_VERSION_OF_MANIFEST_NOT_FOUND) {
